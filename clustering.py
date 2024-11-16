@@ -6,7 +6,7 @@ from skopt import gp_minimize
 from skopt.space import Real
 
 class Strategy:
-    def __init__(self, data_path, train_size=.8, r_squared_threshold=0.8):
+    def __init__(self, data_path, train_size=.99, r_squared_threshold=0.8):
         self.df = pd.read_csv(data_path).drop(['strat_9', 'strat_14', 'strat_5', 'strat_4','strat_1','strat_13','strat_17','Unnamed: 0'], axis=1).fillna(0)
         self.results = {}
         self.selected_columns = []
@@ -87,7 +87,7 @@ class Strategy:
 
 
 # Usage
-analyzer = Strategy('data/decrypted_data/release_5723.csv')
+analyzer = Strategy('data/decrypted_data/release_5851.csv')
 sharpe_ratio = analyzer.calculate_sharpe_ratio()
 
 output = analyzer.generate_team_info_from_scaled_weights(analyzer.adjusted_weights_dict, 'Longer Term Capital Management', 'DogCat')
