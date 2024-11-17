@@ -52,9 +52,7 @@ class Strategy:
 
     def bayesian_optimization_adjust_weights(self):
         def objective_function(weights):
-            weights /= np.sum(np.abs(weights))  
-            adjusted_weights = {list(self.scaled_strat_slope_map.keys())[i]: weights[i] for i in range(len(weights))}
-            
+            weights /= np.sum(np.abs(weights))              
             returns = np.dot(weights, self.test_df[list(self.scaled_strat_slope_map.keys())].values.T)
             sharpe_ratio = qs.stats.sharpe(pd.Series(returns))
             return -sharpe_ratio  
@@ -87,7 +85,7 @@ class Strategy:
 
 
 # Usage
-analyzer = Strategy('data/decrypted_data/release_5851.csv')
+analyzer = Strategy('data/decrypted_data/release_6427.csv')
 sharpe_ratio = analyzer.calculate_sharpe_ratio()
 
 output = analyzer.generate_team_info_from_scaled_weights(analyzer.adjusted_weights_dict, 'Longer Term Capital Management', 'DogCat')

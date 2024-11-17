@@ -60,8 +60,7 @@ class SlackMonitor:
     def _new_env(self, file_name, passcode):
         """Decrypt and process the file."""
         decrypted_df = crp.read_encrypted(path=f'data/encrypted_data/{file_name}.crypt', password=passcode)
-        decrypted_df.to_csv(f'decrypted_data/{file_name}.csv')
-        df = pd.read_csv(f'decrypted_data/{file_name}.csv')
+        decrypted_df.to_csv(f'data/decrypted_data/{file_name}.csv')
         print(f"Data from {file_name} processed successfully.\n")
 
     def monitor_channel(self, poll_interval=5):
@@ -73,10 +72,9 @@ class SlackMonitor:
             time.sleep(poll_interval)
 
 if __name__ == "__main__":
-    # Replace with actual values
-    SLACK_BOT_TOKEN = ""
-    CHANNEL_ID = ""
-    TARGET_USER_ID = ""
+    SLACK_BOT_TOKEN = "xoxb-8020284472341-8040286707987-rLUD0Hkxc2UQlklZRUAN6wmf"
+    CHANNEL_ID = "C080P6M4DKL"
+    TARGET_USER_ID = "U080GCRATP1"
     
     slack_monitor = SlackMonitor(SLACK_BOT_TOKEN, CHANNEL_ID, TARGET_USER_ID)
     slack_monitor.monitor_channel()
