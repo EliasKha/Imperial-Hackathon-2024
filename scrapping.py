@@ -72,7 +72,7 @@ class SlackMonitor:
             time.sleep(poll_interval)
 
 if __name__ == "__main__":
-    SLACK_BOT_TOKEN = "xoxb-8020284472341-8040286707987-rLUD0Hkxc2UQlklZRUAN6wmf"
+    SLACK_BOT_TOKEN = ""
     CHANNEL_ID = "C080P6M4DKL"
     TARGET_USER_ID = "U080GCRATP1"
     
