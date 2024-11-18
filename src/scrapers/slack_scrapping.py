@@ -10,14 +10,13 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 class SlackMonitor:
-    def __init__(self, bot_token, channel_id, target_user_id, strategy_func=None):
+    def __init__(self, bot_token, channel_id, target_user_id):
         self.bot_token = bot_token
         self.channel_id = channel_id
         self.target_user_id = target_user_id
         self.latest_ts = None  
         self.passcode_pattern = r"the passcode is '([^']+)'"
         self.file_name_pattern = r"Data has just been released '([^']+)\.crypt'"
-        self.strategy_func = strategy_func
         self.config_path = 'data/config.json'
         self.last_path = None 
 

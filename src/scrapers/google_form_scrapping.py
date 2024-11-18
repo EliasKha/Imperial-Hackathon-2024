@@ -1,11 +1,9 @@
 import logging
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import WebDriverException, NoSuchWindowException
+from selenium.common.exceptions import  NoSuchWindowException
 from selenium.webdriver.support import expected_conditions as EC
 import undetected_chromedriver as uc
-from time import sleep
-from selenium.webdriver.chrome.options import Options
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -75,7 +73,6 @@ class GoogleFormAutomator:
             send_result = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div[2]/textarea'))
             )
-            sleep(2)
             send_result.clear() 
             send_result.send_keys(self.mytext)
 

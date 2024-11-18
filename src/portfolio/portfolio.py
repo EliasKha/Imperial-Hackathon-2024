@@ -5,13 +5,15 @@ import quantstats as qs
 from skopt import gp_minimize
 from skopt.space import Real
 import logging
+pd.options.mode.copy_on_write = True
+
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class Portfolio:
     def __init__(self, df):
-        self.df = df[-2000:] 
+        self.df = df[-500:] 
         self.linear_columns = []
         self.non_linear_columns = []
 
@@ -66,22 +68,17 @@ class Portfolio:
 
         weights = {self.non_linear_columns[i]: best_weights[i].clip(-.1, .1) for i in range(len(best_weights))}
         return weights
-
+    
     def process(self, team_name='Longer Term Capital Management', passcode='DogCat'):
         self.select_linear_strats()
-       
-
-        self.non_linear_columns = [item for item in self.df.columns if item not in self.linear_columns]
+        self.non_linear_columns = [col for col in self.df.columns if col not in self.linear_columns]
         synthetic_strat_weights = self.bayesian_optimization_linearity_fitting()
-
-        self.df.loc[:, 'strat_synthetic'] = self.df.loc[:, list(synthetic_strat_weights.keys())].dot(list(synthetic_strat_weights.values()))   
+        self.df.loc[:, 'strat_synthetic'] = self.df[list(synthetic_strat_weights.keys())].dot(list(synthetic_strat_weights.values()))
         self.linear_columns.append('strat_synthetic')
         weights = self.bayesian_optimization_weights()
-
         scaled_non_linear_weights = {key: weights['strat_synthetic'] * weight for key, weight in synthetic_strat_weights.items()}
-        strat_dict = {key: weight for key, weight in weights.items()} 
-        strat_dict = {**{key: weight for key, weight in weights.items() if key != 'strat_synthetic'}, **scaled_non_linear_weights}
-        strat_dict['team_name'] = team_name
-        strat_dict['passcode'] = passcode
-        
+        strat_dict = {**{key: weight for key, weight in weights.items() if key != 'strat_synthetic'},
+                    **scaled_non_linear_weights, 
+                    'team_name': team_name, 
+                    'passcode': passcode}
         return strat_dict
