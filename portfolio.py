@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 class Portfolio:
     def __init__(self, df):
-        self.df = df[-2000:]
+        self.df = df[-2000:] 
         self.linear_columns = []
         self.non_linear_columns = []
 
