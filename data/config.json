@@ -1,421 +1,230 @@
 {
-    "./decrypted_data/release_4251.csv": {
-        "scanned": true,
-        "file_name": "release_4251",
-        "file_number": "4251"
-    },
-    "./decrypted_data/release_5403.csv": {
-        "scanned": true,
-        "file_name": "release_5403",
-        "file_number": "5403"
-    },
-    "./decrypted_data/release_5211.csv": {
-        "scanned": true,
-        "file_name": "release_5211",
-        "file_number": "5211"
-    },
-    "./decrypted_data/release_4443.csv": {
-        "scanned": true,
-        "file_name": "release_4443",
-        "file_number": "4443"
-    },
-    "./decrypted_data/release_6043.csv": {
-        "scanned": true,
-        "file_name": "release_6043",
-        "file_number": "6043"
-    },
-    "./decrypted_data/release_3675.csv": {
-        "scanned": true,
-        "file_name": "release_3675",
-        "file_number": "3675"
-    },
-    "./decrypted_data/release_5979.csv": {
-        "scanned": true,
-        "file_name": "release_5979",
-        "file_number": "5979"
-    },
-    "./decrypted_data/release_3931.csv": {
-        "scanned": true,
-        "file_name": "release_3931",
-        "file_number": "3931"
-    },
-    "./decrypted_data/release_6875.csv": {
-        "scanned": true,
-        "file_name": "release_6875",
-        "file_number": "6875"
-    },
-    "./decrypted_data/release_3739.csv": {
-        "scanned": true,
-        "file_name": "release_3739",
-        "file_number": "3739"
-    },
-    "./decrypted_data/release_4123.csv": {
-        "scanned": true,
-        "file_name": "release_4123",
-        "file_number": "4123"
-    },
-    "./decrypted_data/release_6683.csv": {
-        "scanned": true,
-        "file_name": "release_6683",
-        "file_number": "6683"
-    },
-    "./decrypted_data/release_5851.csv": {
-        "scanned": true,
-        "file_name": "release_5851",
-        "file_number": "5851"
-    },
-    "./decrypted_data/release_4187.csv": {
-        "scanned": true,
-        "file_name": "release_4187",
-        "file_number": "4187"
-    },
-    "./decrypted_data/release_6747.csv": {
-        "scanned": true,
-        "file_name": "release_6747",
-        "file_number": "6747"
-    },
-    "./decrypted_data/release_5339.csv": {
-        "scanned": true,
-        "file_name": "release_5339",
-        "file_number": "5339"
-    },
-    "./decrypted_data/release_4635.csv": {
-        "scanned": true,
-        "file_name": "release_4635",
-        "file_number": "4635"
-    },
-    "./decrypted_data/release_4379.csv": {
-        "scanned": true,
-        "file_name": "release_4379",
-        "file_number": "4379"
-    },
-    "./decrypted_data/release_6235.csv": {
-        "scanned": true,
-        "file_name": "release_6235",
-        "file_number": "6235"
-    },
-    "./decrypted_data/release_6619.csv": {
-        "scanned": true,
-        "file_name": "release_6619",
-        "file_number": "6619"
-    },
-    "./decrypted_data/release_6427.csv": {
-        "scanned": true,
-        "file_name": "release_6427",
-        "file_number": "6427"
-    },
-    "./decrypted_data/release_3611.csv": {
-        "scanned": true,
-        "file_name": "release_3611",
-        "file_number": "3611"
-    },
-    "./decrypted_data/release_5275.csv": {
-        "scanned": true,
-        "file_name": "release_5275",
-        "file_number": "5275"
-    },
-    "./decrypted_data/release_5467.csv": {
-        "scanned": true,
-        "file_name": "release_5467",
-        "file_number": "5467"
-    },
-    "./decrypted_data/release_5659.csv": {
-        "scanned": true,
-        "file_name": "release_5659",
-        "file_number": "5659"
-    },
-    "./decrypted_data/release_6811.csv": {
-        "scanned": true,
-        "file_name": "release_6811",
-        "file_number": "6811"
-    },
-    "./decrypted_data/release_6555.csv": {
-        "scanned": true,
-        "file_name": "release_6555",
-        "file_number": "6555"
-    },
-    "./decrypted_data/release_4763.csv": {
-        "scanned": true,
-        "file_name": "release_4763",
-        "file_number": "4763"
-    },
-    "./decrypted_data/release_5723.csv": {
-        "scanned": true,
-        "file_name": "release_5723",
-        "file_number": "5723"
-    },
-    "./decrypted_data/release_6363.csv": {
-        "scanned": true,
-        "file_name": "release_6363",
-        "file_number": "6363"
-    },
-    "./decrypted_data/release_4827.csv": {
-        "scanned": true,
-        "file_name": "release_4827",
-        "file_number": "4827"
-    },
-    "./decrypted_data/release_3803.csv": {
-        "scanned": true,
-        "file_name": "release_3803",
-        "file_number": "3803"
-    },
-    "./decrypted_data/release_3547.csv": {
-        "scanned": true,
-        "file_name": "release_3547",
-        "file_number": "3547"
-    },
-    "./decrypted_data/release_4955.csv": {
-        "scanned": true,
-        "file_name": "release_4955",
-        "file_number": "4955"
-    },
-    "./decrypted_data/release_6171.csv": {
-        "scanned": true,
-        "file_name": "release_6171",
-        "file_number": "6171"
-    },
-    "./decrypted_data/release_5915.csv": {
-        "scanned": true,
-        "file_name": "release_5915",
-        "file_number": "5915"
-    },
-    "./decrypted_data/release_5083.csv": {
-        "scanned": true,
-        "file_name": "release_5083",
-        "file_number": "5083"
-    },
-    "./decrypted_data/release_5531.csv": {
-        "scanned": true,
-        "file_name": "release_5531",
-        "file_number": "5531"
-    },
-    "./decrypted_data/release_4571.csv": {
-        "scanned": true,
-        "file_name": "release_4571",
-        "file_number": "4571"
-    },
-    "./decrypted_data/release_5595.csv": {
-        "scanned": true,
-        "file_name": "release_5595",
-        "file_number": "5595"
-    },
-    "./decrypted_data/release_4891.csv": {
-        "scanned": true,
-        "file_name": "release_4891",
-        "file_number": "4891"
-    },
-    "./decrypted_data/release_3867.csv": {
-        "scanned": true,
-        "file_name": "release_3867",
-        "file_number": "3867"
-    },
-    "./decrypted_data/release_5147.csv": {
-        "scanned": true,
-        "file_name": "release_5147",
-        "file_number": "5147"
-    },
-    "./decrypted_data/release_4059.csv": {
-        "scanned": true,
-        "file_name": "release_4059",
-        "file_number": "4059"
-    },
-    "./decrypted_data/release_5019.csv": {
-        "scanned": true,
-        "file_name": "release_5019",
-        "file_number": "5019"
-    },
-    "./decrypted_data/release_4699.csv": {
-        "scanned": true,
-        "file_name": "release_4699",
-        "file_number": "4699"
-    },
-    "./decrypted_data/release_6299.csv": {
-        "scanned": true,
-        "file_name": "release_6299",
-        "file_number": "6299"
-    },
-    "./decrypted_data/release_4507.csv": {
-        "scanned": true,
-        "file_name": "release_4507",
-        "file_number": "4507"
-    },
-    "./decrypted_data/release_4315.csv": {
-        "scanned": true,
-        "file_name": "release_4315",
-        "file_number": "4315"
-    },
-    "./decrypted_data/release_5787.csv": {
-        "scanned": true,
-        "file_name": "release_5787",
-        "file_number": "5787"
-    },
-    "./decrypted_data/release_6107.csv": {
-        "scanned": true,
-        "file_name": "release_6107",
-        "file_number": "6107"
-    },
-    "./decrypted_data/release_6491.csv": {
-        "scanned": true,
-        "file_name": "release_6491",
-        "file_number": "6491"
-    },
-    "./decrypted_data/release_6939.csv": {
-        "scanned": true,
-        "file_name": "release_6939",
-        "file_number": "6939"
-    },
-    "data/decrypted_data/release_6235.csv": {
+    "release_3547": {
         "scanned": true
     },
-    "data/decrypted_data/release_6299.csv": {
+    "release_3611": {
         "scanned": true
     },
-    "data/decrypted_data/release_6363.csv": {
+    "release_3675": {
         "scanned": true
     },
-    "data/decrypted_data/release_6427.csv": {
+    "release_3739": {
         "scanned": true
     },
-    "data/decrypted_data/release_6491.csv": {
+    "release_3803": {
         "scanned": true
     },
-    "data/decrypted_data/release_6555.csv": {
+    "release_3867": {
         "scanned": true
     },
-    "data/decrypted_data/release_6619.csv": {
+    "release_4059": {
         "scanned": true
     },
-    "data/decrypted_data/release_6683.csv": {
+    "release_4123": {
         "scanned": true
     },
-    "data/decrypted_data/release_6747.csv": {
+    "release_4187": {
         "scanned": true
     },
-    "data/decrypted_data/release_6811.csv": {
+    "release_4251": {
         "scanned": true
     },
-    "data/decrypted_data/release_6875.csv": {
+    "release_4315": {
         "scanned": true
     },
-    "data/decrypted_data/release_6939.csv": {
+    "release_4379": {
         "scanned": true
     },
-    "data/decrypted_data/release_7003.csv": {
+    "release_4443": {
         "scanned": true
     },
-    "data/decrypted_data/release_7067.csv": {
-        "scanned": true,
-        "file_name": "release_7067",
-        "file_number": "7067"
+    "release_4507": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7131.csv": {
-        "scanned": true,
-        "file_name": "release_7131",
-        "file_number": "7131"
+    "release_4571": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7195.csv": {
-        "scanned": true,
-        "file_name": "release_7195",
-        "file_number": "7195"
+    "release_4635": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7259.csv": {
-        "scanned": true,
-        "file_name": "release_7259",
-        "file_number": "7259"
+    "release_4699": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7323.csv": {
-        "scanned": true,
-        "file_name": "release_7323",
-        "file_number": "7323"
+    "release_4763": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7387.csv": {
-        "scanned": true,
-        "file_name": "release_7387",
-        "file_number": "7387"
+    "release_4827": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7451.csv": {
-        "scanned": true,
-        "file_name": "release_7451",
-        "file_number": "7451"
+    "release_4891": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7515.csv": {
-        "scanned": true,
-        "file_name": "release_7515",
-        "file_number": "7515"
+    "release_4955": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7579.csv": {
-        "scanned": true,
-        "file_name": "release_7579",
-        "file_number": "7579"
+    "release_5019": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7643.csv": {
-        "scanned": true,
-        "file_name": "release_7643",
-        "file_number": "7643"
+    "release_5083": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7707.csv": {
-        "scanned": true,
-        "file_name": "release_7707",
-        "file_number": "7707"
+    "release_5147": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7771.csv": {
-        "scanned": true,
-        "file_name": "release_7771",
-        "file_number": "7771"
+    "release_5211": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7835.csv": {
-        "scanned": true,
-        "file_name": "release_7835",
-        "file_number": "7835"
+    "release_5275": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7899.csv": {
-        "scanned": true,
-        "file_name": "release_7899",
-        "file_number": "7899"
+    "release_5339": {
+        "scanned": true
     },
-    "data/decrypted_data/release_7963.csv": {
-        "scanned": true,
-        "file_name": "release_7963",
-        "file_number": "7963"
+    "release_5403": {
+        "scanned": true
     },
-    "data/decrypted_data/release_8027.csv": {
-        "scanned": true,
-        "file_name": "release_8027",
-        "file_number": "8027"
+    "release_5467": {
+        "scanned": true
     },
-    "data/decrypted_data/release_8091.csv": {
-        "scanned": true,
-        "file_name": "release_8091",
-        "file_number": "8091"
+    "release_5531": {
+        "scanned": true
     },
-    "data/decrypted_data/release_8155.csv": {
-        "scanned": true,
-        "file_name": "release_8155",
-        "file_number": "8155"
+    "release_5595": {
+        "scanned": true
     },
-    "data/decrypted_data/release_8219.csv": {
-        "scanned": true,
-        "file_name": "release_8219",
-        "file_number": "8219"
+    "release_5659": {
+        "scanned": true
     },
-    "data/decrypted_data/release_8283.csv": {
-        "scanned": true,
-        "file_name": "release_8283",
-        "file_number": "8283"
+    "release_5723": {
+        "scanned": true
     },
-    "data/decrypted_data/release_8347.csv": {
-        "scanned": true,
-        "file_name": "release_8347",
-        "file_number": "8347"
+    "release_5787": {
+        "scanned": true
     },
-    "data/decrypted_data/release_8411.csv": {
-        "scanned": true,
-        "file_name": "release_8411",
-        "file_number": "8411"
+    "release_5851": {
+        "scanned": true
     },
-    "data/decrypted_data/release_8475.csv": {
-        "scanned": true,
-        "file_name": "release_8475",
-        "file_number": "8475"
+    "release_5915": {
+        "scanned": true
+    },
+    "release_5979": {
+        "scanned": true
+    },
+    "release_6043": {
+        "scanned": true
+    },
+    "release_6107": {
+        "scanned": true
+    },
+    "release_6171": {
+        "scanned": true
+    },
+    "release_6235": {
+        "scanned": true
+    },
+    "release_6299": {
+        "scanned": true
+    },
+    "release_6363": {
+        "scanned": true
+    },
+    "release_6427": {
+        "scanned": true
+    },
+    "release_6491": {
+        "scanned": true
+    },
+    "release_6555": {
+        "scanned": true
+    },
+    "release_6619": {
+        "scanned": true
+    },
+    "release_6683": {
+        "scanned": true
+    },
+    "release_6747": {
+        "scanned": true
+    },
+    "release_6811": {
+        "scanned": true
+    },
+    "release_6875": {
+        "scanned": true
+    },
+    "release_6939": {
+        "scanned": true
+    },
+    "release_7003": {
+        "scanned": true
+    },
+    "release_7067": {
+        "scanned": true
+    },
+    "release_7131": {
+        "scanned": true
+    },
+    "release_7195": {
+        "scanned": true
+    },
+    "release_7259": {
+        "scanned": true
+    },
+    "release_7323": {
+        "scanned": true
+    },
+    "release_7387": {
+        "scanned": true
+    },
+    "release_7451": {
+        "scanned": true
+    },
+    "release_7515": {
+        "scanned": true
+    },
+    "release_7579": {
+        "scanned": true
+    },
+    "release_7643": {
+        "scanned": true
+    },
+    "release_7707": {
+        "scanned": true
+    },
+    "release_7771": {
+        "scanned": true
+    },
+    "release_7835": {
+        "scanned": true
+    },
+    "release_7899": {
+        "scanned": true
+    },
+    "release_7963": {
+        "scanned": true
+    },
+    "release_8027": {
+        "scanned": true
+    },
+    "release_8091": {
+        "scanned": true
+    },
+    "release_8155": {
+        "scanned": true
+    },
+    "release_8219": {
+        "scanned": true
+    },
+    "release_8283": {
+        "scanned": true
+    },
+    "release_8347": {
+        "scanned": true
+    },
+    "release_8411": {
+        "scanned": true
+    },
+    "release_8475": {
+        "scanned": true
     }
 }

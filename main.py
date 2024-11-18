@@ -1,19 +1,28 @@
-from portfolio_1 import Portfolio as portfoilio_1
-from portfolio_2 import Portfolio as portfoilio_2
+from portfolio import Portfolio as portfoilio
 from google_form_scrapping import GoogleFormAutomator
 from slack_scrapping import SlackMonitor
+import pandas as pd
  
 SLACK_BOT_TOKEN = ""
 CHANNEL_ID = "C080P6M4DKL"
 TARGET_USER_ID = "U080GCRATP1"
-slack_monitor = SlackMonitor(SLACK_BOT_TOKEN, CHANNEL_ID, TARGET_USER_ID, strategy_func=portfoilio_1)
+email = "imperialalgothon@gmail.com"
+password = "DogCat@123"
+slack_monitor = SlackMonitor(SLACK_BOT_TOKEN, CHANNEL_ID, TARGET_USER_ID, strategy_func=portfoilio)
+should_send = True
 
+# filter the ones which are too noisy
+# optimise the lookback period
 while __name__ == "__main__":
-    slack_monitor.monitor_channel()
 
-    if portfolio := slack_monitor.output:
-        google_form = GoogleFormAutomator(str(portfolio))
+    if not (file_path:=slack_monitor.monitor_channel()):
+        break
+    df = pd.read_csv(file_path).drop(['strat_9', 'strat_14', 'strat_5', 'strat_4', 'strat_1', 'strat_13', 'strat_17'], axis=1).fillna(0)
+    portfoilio_weights = portfoilio(df).process()
+    if should_send:
+        google_form = GoogleFormAutomator(mytext=str(portfoilio_weights), email=email, password=password)
         google_form.login()  
         google_form.fill_form() 
+        google_form.close_browser()
 
 

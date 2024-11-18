@@ -1,10 +1,13 @@
 import requests
-import time
 import re
 import pandas as pd
 import cryptpandas as crp
 import json
+import os
+import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 class SlackMonitor:
     def __init__(self, bot_token, channel_id, target_user_id, strategy_func=None):
@@ -15,89 +18,121 @@ class SlackMonitor:
         self.passcode_pattern = r"the passcode is '([^']+)'"
         self.file_name_pattern = r"Data has just been released '([^']+)\.crypt'"
         self.strategy_func = strategy_func
-        self.output = None 
+        self.config_path = 'data/config.json'
+        self.last_path = None 
+
+        self._initialize_config()
+
+    def _initialize_config(self):
+        if not os.path.exists(self.config_path):
+            existing_files = {}
+            encrypted_dir = 'data/encrypted_data/'
+
+            if os.path.exists(encrypted_dir):
+                for file in os.listdir(encrypted_dir):
+                    if file.endswith('.crypt'):
+                        file_name = file.rsplit('.', 1)[0]  
+                        existing_files[file_name] = {"scanned": False}
+
+            with open(self.config_path, 'w') as config_file:
+                json.dump(existing_files, config_file, indent=4)
+            logger.info("Initialized config file with existing encrypted files.")
 
     def _get_channel_messages(self):
         url = "https://slack.com/api/conversations.history"
         headers = {"Authorization": f"Bearer {self.bot_token}"}
-        params = {
-            "channel": self.channel_id,
-            "limit": 100,
-        }
-        if self.latest_ts:
-            params["oldest"] = self.latest_ts 
+        all_messages = []
+        has_more = True
+        next_cursor = None
 
-        response = requests.get(url, headers=headers, params=params)
-        if response.status_code == 200:
-            data = response.json()
-            if data["ok"]:
-                return data["messages"]
-            else:
-                print(f"Slack API Error: {data['error']}")
-        else:
-            print(f"HTTP Error: {response.status_code}")
-        return []
+        while has_more:
+            params = {"channel": self.channel_id, "limit": 100}
+            if next_cursor:
+                params["cursor"] = next_cursor
+
+            try:
+                response = requests.get(url, headers=headers, params=params)
+                response.raise_for_status() 
+                data = response.json()
+                if data.get("ok"):
+                    all_messages.extend(data.get("messages", []))
+                    next_cursor = data.get("response_metadata", {}).get("next_cursor")
+                    has_more = bool(next_cursor)
+                else:
+                    logger.error(f"Slack API Error: {data.get('error', 'Unknown error')}")
+                    break
+            except requests.exceptions.RequestException as e:
+                logger.error(f"Request failed: {e}")
+                break
+
+        logger.info(f"Retrieved {len(all_messages)} messages from Slack channel.")
+        return all_messages[::-1] 
 
     def _process_message(self, message):
-        user_id = message.get("user")
-        text = message.get("text")
-        
-        if user_id == self.target_user_id and text:
-            passcode_match = re.search(self.passcode_pattern, text)
-            file_name_match = re.search(self.file_name_pattern, text)
-            
+        if message.get("user") == self.target_user_id and message.get("text"):
+            passcode_match = re.search(self.passcode_pattern, message["text"])
+            file_name_match = re.search(self.file_name_pattern, message["text"])
+
             if passcode_match and file_name_match:
-                passcode = passcode_match.group(1)
                 file_name = file_name_match.group(1)
-                self._handle_file_message(file_name, passcode)
+                if not self.check_scanned_status(file_name):
+                    self._handle_file_message(file_name, passcode_match.group(1))
+                    if self.last_path:  
+                        return True
+        return False
 
     def _handle_file_message(self, file_name, passcode):
-        print(f"Now scanning Filename: {file_name}, {passcode}")
-        self._new_env(file_name, passcode)
+        logger.info(f"Processing file: {file_name}.crypt with passcode.")
+        self._decrypt_and_save(file_name, passcode)
 
-    def check_scanned_status(self, filepath):
-        with open('data/config.json', 'r') as config_file:
-            config = json.load(config_file)
+    def _load_config(self):
+        with open(self.config_path, 'r') as config_file:
+            return json.load(config_file)
 
-        if filepath not in config:
-            print(f"{filepath} not found in configuration.")
-            return False  # Return False to indicate it's not scanned
-        return config[filepath].get("scanned", False)
-
-    def update_scanned_status(self, filepath):
-        with open('data/config.json', 'r') as config_file:
-            config = json.load(config_file)
-
-        if filepath not in config:
-            file_name = filepath.split('/')[-1].split('.')[0]
-            file_number = file_name.split('_')[1]
-            config[filepath] = {"scanned": True, "file_name": file_name, "file_number": file_number}
-            print(f"{filepath} not found in configuration. Added with scanned: True")
-        else:
-            config[filepath]["scanned"] = True
-
-        with open('data/config.json', 'w') as config_file:
+    def _save_config(self, config):
+        with open(self.config_path, 'w') as config_file:
             json.dump(config, config_file, indent=4)
 
-    def _new_env(self, file_name, passcode):
+    def check_scanned_status(self, file_name):
+        config = self._load_config()
+        return config.get(file_name, {}).get("scanned", False)
+
+    def update_scanned_status(self, file_name):
+        config = self._load_config()
+        config[file_name] = {"scanned": True}
+        self._save_config(config)
+        logger.info(f"Updated config for {file_name}: marked as scanned.")
+
+    def _decrypt_and_save(self, file_name, passcode):
         file_path = f"data/decrypted_data/{file_name}.csv"
-        if self.check_scanned_status(file_path):
+        encrypted_path = f"data/encrypted_data/{file_name}.crypt"
+
+        if not os.path.exists(encrypted_path):
+            logger.warning(f"File {encrypted_path} not found.")
             return
-        
-        decrypted_df = crp.read_encrypted(path=f'data/encrypted_data/{file_name}.crypt', password=passcode)
-        decrypted_df.to_csv(file_path)
-        df = pd.read_csv(file_path).drop(['Unnamed: 0', 'strat_9', 'strat_14', 'strat_5', 'strat_4', 'strat_1', 'strat_13', 'strat_17'], axis=1).fillna(0)
 
-        if self.strategy_func:
-            self.output = self.strategy_func(df).process()
-            print(self.output)
-
-        self.update_scanned_status(file_path)
+        try:
+            decrypted_df = crp.read_encrypted(path=encrypted_path, password=passcode)
+            decrypted_df.to_csv(file_path, index=False)
+            logger.info(f"Decrypted data saved to {file_path}")
+            self.last_path = file_path 
+            self.update_scanned_status(file_name)
+        except (FileNotFoundError, ValueError) as e:
+            logger.error(f"Failed to decrypt or save {file_name}: {e}")
 
     def monitor_channel(self):
-        self.output = None
-        messages = self._get_channel_messages()
-        for message in reversed(messages):
-            self._process_message(message)
 
+        config = self._load_config()
+        unprocessed_files = [file for file, status in config.items() if not status.get("scanned")]
 
+        if not unprocessed_files:
+            logger.info("No unprocessed files found in the config.")
+            return None  
+
+        messages = self._get_channel_messages()  
+        for message in messages:
+            if self._process_message(message):
+                return self.last_path 
+
+        logger.info("No new CSV files processed.")
+        return None 
