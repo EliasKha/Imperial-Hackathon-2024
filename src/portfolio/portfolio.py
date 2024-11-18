@@ -69,7 +69,7 @@ class Portfolio:
         weights = {self.non_linear_columns[i]: best_weights[i].clip(-.1, .1) for i in range(len(best_weights))}
         return weights
     
-    def process(self, team_name='Longer Term Capital Management', passcode='DogCat'):
+    def process(self, team_name=None, passcode=None):
         self.select_linear_strats()
         self.non_linear_columns = [col for col in self.df.columns if col not in self.linear_columns]
         synthetic_strat_weights = self.bayesian_optimization_linearity_fitting()
@@ -77,8 +77,12 @@ class Portfolio:
         self.linear_columns.append('strat_synthetic')
         weights = self.bayesian_optimization_weights()
         scaled_non_linear_weights = {key: weights['strat_synthetic'] * weight for key, weight in synthetic_strat_weights.items()}
-        strat_dict = {**{key: weight for key, weight in weights.items() if key != 'strat_synthetic'},
-                    **scaled_non_linear_weights, 
-                    'team_name': team_name, 
-                    'passcode': passcode}
+        if team_name and passcode:
+            strat_dict = {**{key: weight for key, weight in weights.items() if key != 'strat_synthetic'},
+                        **scaled_non_linear_weights, 
+                        'team_name': team_name, 
+                        'passcode': passcode}
+        else:
+            strat_dict = {**{key: weight for key, weight in weights.items() if key != 'strat_synthetic'},
+                        **scaled_non_linear_weights}
         return strat_dict
