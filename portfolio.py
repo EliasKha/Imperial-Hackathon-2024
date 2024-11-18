@@ -31,7 +31,7 @@ class Portfolio:
             sharpe_ratio = qs.stats.sharpe(pd.Series(returns))
             return -sharpe_ratio  
 
-        search_space = [Real(-0.01, 0.01) for _ in range(len(self.linear_columns))]
+        search_space = [Real(-0.1, 0.1) for _ in range(len(self.linear_columns))]
         optimization_result = gp_minimize(negative_sharp_ratio, search_space, n_calls=50, random_state=42)
 
         best_weights = optimization_result.x
@@ -54,7 +54,7 @@ class Portfolio:
                 
             return error
 
-        search_space = [Real(-0.01, 0.01) for _ in range(len(self.non_linear_columns))]
+        search_space = [Real(-1, 1) for _ in range(len(self.non_linear_columns))]
         search_space.append(Real(-100, 100))
         
         optimization_result = gp_minimize(negative_sharp_ratio, search_space, n_calls=50, random_state=42)
