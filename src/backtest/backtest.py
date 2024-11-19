@@ -37,7 +37,6 @@ class Backtest:
                 current_data = DataProcessor(file_path).process() 
 
                 if i != 0:
-                    print(f'{i}/{len(files)}')
                     new_data = current_data.merge(previous_data, how='left', indicator=True).query('_merge == "left_only"').drop('_merge', axis=1).fillna(0)
                     old_data = current_data.merge(previous_data, how='inner').fillna(0)
                     weights = self.portfolio(df=old_data).process()
